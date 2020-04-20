@@ -1,9 +1,27 @@
 package com.movierank.domain;
 
+import java.util.Date;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@Document(collection = "movie")// mongoDB쓸때는 이게 추가된다. 
 public class MovieDTO {
+	@Id
 	private int rank;				//순위
 	private String movie; 			//영화제목
-	private String imgsrc;   		
+	private String imgsrc;   		//포스터 이미지		
 	private String type; 			//영화 장르
 	private String opendate;	 	//개봉일
 	private String bookingrate;		//예매율
@@ -13,6 +31,8 @@ public class MovieDTO {
 	private String navercode;		//네이버 영화코드
 	private double naverscore;		//네이버 평점
 	private String daumcode;		//다음 영화코드
+	private double daumscore;		//다음 평점
+	private double score;			//네이버 + 다음 평점의 평균
 	public MovieDTO(int rank, String movie, String imgsrc, String type, String opendate, String bookingrate, String runtime,
 			String director, String actor, String navercode, double naverscore, String daumcode, double daumscore) {
 		super();
@@ -29,7 +49,6 @@ public class MovieDTO {
 		this.naverscore = naverscore;
 		this.daumcode = daumcode;
 		this.daumscore = daumscore;
+		
 	}
-	private double daumscore;		//다음 평점
-	private double score;			//네이버 + 다음 평점의 평균
 }
